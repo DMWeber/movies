@@ -1,17 +1,60 @@
-package com.kreait.Entity;
+package com.kreait.entity;
 
-import java.util.Set;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import java.io.Serializable;
+import java.util.List;
 
-public class Movie {
+@Entity
+public class Movie implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String title;
 
-    private Long duration;
+    // duration in minutes
+    private Integer duration;
 
-    public Set<Person> getPeople() {
+    private Integer publicationYear;
+
+    @ManyToMany
+    private List<Person> people;
+
+    @ElementCollection
+    @CollectionTable(
+            name = "MOVIEIMAGE",
+            joinColumns = @JoinColumn(name = "MOVIE_ID")
+    )
+    private List<Image> imageUrls;
+
+    public Movie() {
+    }
+
+    private Movie(String title, Integer duration, Integer publicationYear, List<Person> people, List<Image> imageUrls) {
+        this.title = title;
+        this.duration = duration;
+        this.publicationYear = publicationYear;
+        this.people = people;
+        this.imageUrls = imageUrls;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public List<Person> getPeople() {
         return people;
     }
 
-    public Long getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
@@ -19,5 +62,15 @@ public class Movie {
         return title;
     }
 
-    private Set<Person> people;
+    public Integer getPublicationYear() {
+        return publicationYear;
+    }
+
+    public List<Image> getImageUrls() {
+        return imageUrls;
+    }
+
+    public static Movie create(String title, Integer duration, Integer publicationYear, List<Person> people, List<Image> imageUrls) {
+        return new Movie(title, duration, publicationYear, people, imageUrls);
+    }
 }
