@@ -1,17 +1,1 @@
-build/
-derby.log
-/repository/
-repository.xml
-.gradle/
-.idea/*
-!.idea/codeStyleSettings.xml
-!.idea/runConfigurations/Vagrant_Remote_Debug.xml
-*.iml
-/bin/
 .DS_Store
-/.classpath
-/.project
-/.settings
-/solr
-node_modules
-/src/main/resources/static/*
