@@ -6,6 +6,7 @@ import com.kreait.entity.Person;
 import com.kreait.repository.MovieRepository;
 import com.kreait.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,4 +38,11 @@ public class ApiController {
     public List<Person> getAllPeople() {
         return personRepository.findAll();
     }
+
+    @RequestMapping(value = "/movies/{id}", method = RequestMethod.GET)
+    public Movie getSinglyMovie(@PathVariable("id") Long id) {
+
+        return movieRepository.findOne(id);
+    }
+
 }
