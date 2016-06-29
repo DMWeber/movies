@@ -1,5 +1,6 @@
 package com.kreait.controller;
 
+import com.kreait.dto.MovieDTO;
 import com.kreait.entity.Movie;
 import com.kreait.entity.Person;
 import com.kreait.repository.MovieRepository;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -22,8 +24,13 @@ public class ApiController {
 
 
     @RequestMapping(value = "/movies", method = RequestMethod.GET)
-    public List<Movie> getAllMovies() {
-        return movieRepository.findAll();
+    public List<MovieDTO> getAllMovies() {
+
+        List<MovieDTO> dtos = new ArrayList<>();
+        for (Movie movie : movieRepository.findAll()) {
+            dtos.add(new MovieDTO(movie));
+        }
+        return dtos;
     }
 
     @RequestMapping(value = "/people", method = RequestMethod.GET)
