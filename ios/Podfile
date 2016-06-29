@@ -5,5 +5,4 @@ target 'movies' do
   pod 'Alamofire', '~> 3.4'
   pod 'AlamofireObjectMapper', '~> 3.0'
   pod 'ObjectMapper', '~> 1.2'
-  pod 'SwiftyJSON', '~> 2.3'
 end

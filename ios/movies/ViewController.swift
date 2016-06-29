@@ -12,14 +12,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+
+
+        MovieRepo.getMovies{(error, movies) -> Void in
+            if let _ = error {
+                print(error.debugDescription)
+            } else if let movies = movies where !movies.isEmpty {
+                // show movies
+            }
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
+    
 }
 
