@@ -98,8 +98,6 @@ public class MockDataService implements ApplicationListener<ApplicationReadyEven
 
         this.personRepository.save(people);
         this.movieRepository.save(movies);
-
-        return;
     }
 
 }

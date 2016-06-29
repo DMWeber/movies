@@ -28,7 +28,7 @@ public class Movie implements Serializable {
     @ManyToMany
     private List<Person> people;
 
-    @ElementCollection
+    @ElementCollection()
     @CollectionTable(
             name = "MOVIEIMAGE",
             joinColumns = @JoinColumn(name = "MOVIE_ID")
@@ -72,5 +72,20 @@ public class Movie implements Serializable {
 
     public static Movie create(String title, Integer duration, Integer publicationYear, List<Person> people, List<Image> imageUrls) {
         return new Movie(title, duration, publicationYear, people, imageUrls);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Movie)) return false;
+
+        Movie movie = (Movie) o;
+
+        return getId() != null ? getId().equals(movie.getId()) : movie.getId() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return getId() != null ? getId().hashCode() : 0;
     }
 }
