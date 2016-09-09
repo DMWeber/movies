@@ -1,6 +1,6 @@
-# This is a Traingings Project
+# This is a Trainings Project
 
-# FeatureSet
+# Featureset
 - Restful Endpoints for CRUD methods (Create Read Update Delete) for a Movie Resource 
   - a movie consists of a few properties "name,release, date, etc..."
 
